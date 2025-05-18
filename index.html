@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <span class="sun">☀️</span>
+            <span class="moon">🌙</span>
+        </button>
+    </div>
+    <div class="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <div class="score">
+            <span>You: <span id="playerScore">0</span></span>
+            <span>Computer: <span id="computerScore">0</span></span>
+        </div>
+        <!-- Add this right after the score div and before the choices div -->
+        <!-- Replace the game-animation div with this -->
+        <div class="game-animation">
+            <div class="player-hand hand-rock"></div>
+            <div class="vs-text">VS</div>
+            <div class="computer-hand hand-rock"></div>
+        </div>
+        <div class="choices">
+            <button class="choice" data-choice="rock">🪨</button>
+            <button class="choice" data-choice="paper">📄</button>
+            <button class="choice" data-choice="scissors">✂️</button>
+        </div>
+        <div class="status" id="status">Choose your move!</div>
+        <div class="streak" id="streak">Current Streak: 0</div>
+        <div class="prediction" id="prediction"></div>
+        <button class="reset-btn" id="resetBtn">Reset Game</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

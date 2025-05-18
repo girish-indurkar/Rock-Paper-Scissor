@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+:root {
+    --bg-gradient-light: linear-gradient(135deg, #1e3c72, #2a5298);
+    --bg-gradient-dark: linear-gradient(135deg, #0f172a, #1e293b);
+    --container-bg-light: rgba(255, 255, 255, 0.1);
+    --container-bg-dark: rgba(0, 0, 0, 0.3);
+    --text-color-light: #ffffff;
+    --text-color-dark: #e2e8f0;
+    --button-hover-light: rgba(255, 255, 255, 0.3);
+    --button-hover-dark: rgba(255, 255, 255, 0.15);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+body.light-mode {
+    background: var(--bg-gradient-light);
+    color: var(--text-color-light);
+}
+
+body.dark-mode {
+    background: var(--bg-gradient-dark);
+    color: var(--text-color-dark);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#themeToggle {
+    background: transparent;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+.light-mode .sun,
+.dark-mode .moon {
+    display: none;
+}
+
+.game-container {
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .game-container {
+    background: var(--container-bg-light);
+}
+
+.dark-mode .game-container {
+    background: var(--container-bg-dark);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.choice {
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    font-size: 2em;
+}
+
+.light-mode .choice {
+    background: var(--container-bg-light);
+}
+
+.dark-mode .choice {
+    background: var(--container-bg-dark);
+}
+
+.choice:hover {
+    transform: scale(1.1);
+}
+
+.light-mode .choice:hover {
+    background: var(--button-hover-light);
+}
+
+.dark-mode .choice:hover {
+    background: var(--button-hover-dark);
+}
+
+.status {
+    text-align: center;
+    margin: 20px 0;
+    min-height: 60px;
+}
+
+.score {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+.streak {
+    text-align: center;
+    margin-top: 10px;
+    color: #ffd700;
+}
+
+.prediction {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    color: #ffd700;
+}
+
+.reset-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    display: block;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.reset-btn:hover {
+    background: #ff6b81;
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .choice {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5em;
+    }
+
+    .game-container {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    #themeToggle {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+    }
+}
+
+.choice.winner {
+    animation: winner-pulse 0.5s ease-in-out;
+}
+
+@keyframes winner-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Add these new styles at the end of your CSS file */
+.game-animation {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+    height: 150px;
+    position: relative;
+}
+
+.player-hand, .computer-hand {
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
+}
+
+.player-hand {
+    transform: scaleX(-1);
+}
+
+.hand-rock {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffdbac" d="M20,45 C20,25 35,20 50,20 C65,20 80,25 80,45 L80,60 C80,80 65,85 50,85 C35,85 20,80 20,60 Z M35,40 Q50,40 50,45 Q50,40 65,40 L65,60 Q50,60 50,55 Q50,60 35,60 Z"/></svg>');
+}
+
+.hand-paper {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffdbac" d="M20,50 L30,30 L40,25 L50,20 L60,25 L70,30 L80,50 L80,70 C80,85 65,90 50,90 C35,90 20,85 20,70 Z"/><path fill="%23f1c27d" d="M30,30 L30,70 M40,25 L40,75 M50,20 L50,80 M60,25 L60,75 M70,30 L70,70"/></svg>');
+}
+
+.hand-scissors {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffdbac" d="M30,20 L50,40 L70,20 L70,50 L50,70 L30,50 Z M35,25 L50,40 L65,25 L65,45 L50,60 L35,45 Z"/></svg>');
+}
+
+.vs-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.shake {
+    animation: shake 0.8s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    20% { transform: translateY(-10px) rotate(-20deg); }
+    40% { transform: translateY(0) rotate(0deg); }
+    60% { transform: translateY(-10px) rotate(20deg); }
+    80% { transform: translateY(0) rotate(0deg); }
+}
+
+.player-hand.shake {
+    animation: shake-player 0.8s ease-in-out;
+}
+
+@keyframes shake-player {
+    0%, 100% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+    20% { transform: scaleX(-1) translateY(-10px) rotate(20deg); }
+    40% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+    60% { transform: scaleX(-1) translateY(-10px) rotate(-20deg); }
+    80% { transform: scaleX(-1) translateY(0) rotate(0deg); }
+}
